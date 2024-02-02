@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { Button } from '$lib/components/ui/button';
 	import { exit } from '@tauri-apps/api/process';
 	import { appWindow } from '@tauri-apps/api/window';
@@ -14,9 +15,9 @@
 </script>
 
 <nav class="py-2 px-3 flex justify-between items-center" data-tauri-drag-region>
-	<div class="flex items-center gap-2">
-		<a href="/"><Home /></a>
-		<Button on:click={toggleMode} variant="outline" size="icon">
+	<div class="flex items-center">
+		<Button variant="ghost" on:click={() => goto('/')}><Home /></Button>
+		<Button on:click={toggleMode} variant="ghost" size="icon">
 			<Sun
 				class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
 			/>
@@ -26,10 +27,28 @@
 			<span class="sr-only">Toggle theme</span>
 		</Button>
 	</div>
-	<p>Carlton's Utilities</p>
-	<div class="flex gap-1">
-		<button on:click={appWindow.minimize}><MinusCircle /></button>
-		<button on:click={appWindow.toggleMaximize}><PlusCircle /></button>
-		<button on:click={async () => await exit(1)}><XCircle /></button>
+	<h3>Carlton's Utilities</h3>
+	<div class="flex">
+		<Button
+			variant="ghost"
+			on:click={appWindow.minimize}
+			class="px-2 rounded-full"
+		>
+			<MinusCircle />
+		</Button>
+		<Button
+			variant="ghost"
+			on:click={appWindow.toggleMaximize}
+			class="px-2 rounded-full"
+		>
+			<PlusCircle />
+		</Button>
+		<Button
+			variant="ghost"
+			on:click={async () => await exit(1)}
+			class="px-2 rounded-full"
+		>
+			<XCircle />
+		</Button>
 	</div>
 </nav>
