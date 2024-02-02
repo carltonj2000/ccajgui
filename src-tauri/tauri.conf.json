@@ -1,0 +1,110 @@
+{
+	"$schema": "../node_modules/@tauri-apps/cli/schema.json",
+	"build": {
+		"beforeBuildCommand": "npm run build",
+		"beforeDevCommand": "npm run dev",
+		"devPath": "http://localhost:5173",
+		"distDir": "../build"
+	},
+	"package": {
+		"productName": "ccajgui",
+		"version": "0.1.0"
+	},
+	"tauri": {
+		"allowlist": {
+			"all": false,
+			"window": {
+				"maximize": true,
+				"minimize": true,
+				"startDragging": true,
+				"unmaximize": true
+			},
+			"process": {
+				"exit": true
+			},
+			"fs": {
+				"all": false,
+				"readFile": true,
+				"writeFile": true,
+				"removeFile": true,
+				"exists": true,
+				"createDir": true,
+				"scope": [
+					"*/**",
+					"$APPCONFIG",
+					"$APPCONFIG/",
+					"$APPCONFIG/*",
+					"$APPCONFIG/**",
+					"$APPCONFIG/*/**"
+				]
+			}
+		},
+		"bundle": {
+			"active": true,
+			"category": "DeveloperTool",
+			"copyright": "",
+			"deb": {
+				"depends": []
+			},
+			"externalBin": [],
+			"icon": [
+				"icons/32x32.png",
+				"icons/128x128.png",
+				"icons/128x128@2x.png",
+				"icons/icon.icns",
+				"icons/icon.ico"
+			],
+			"identifier": "com.carltonjoseph.utilities",
+			"longDescription": "",
+			"macOS": {
+				"entitlements": null,
+				"exceptionDomain": "",
+				"frameworks": [],
+				"providerShortName": null,
+				"signingIdentity": null
+			},
+			"resources": [],
+			"shortDescription": "",
+			"targets": "all",
+			"windows": {
+				"certificateThumbprint": null,
+				"digestAlgorithm": "sha256",
+				"timestampUrl": ""
+			}
+		},
+		"cli": {
+			"description": "CJ Utils",
+			"longDescription": "Carlton's Utilities",
+			"args": [
+				{
+					"name": "verbose",
+					"short": "v",
+					"takesValue": true,
+					"multiple": true,
+					"possibleValues": ["info", "warn", "error"]
+				}
+			],
+			"subcommands": {
+				"push-ip": {
+					"description": "push home IP",
+					"longDescription": "push external IP for home to a db"
+				}
+			}
+		},
+		"security": {
+			"csp": null
+		},
+		"updater": {
+			"active": false
+		},
+		"windows": [
+			{
+				"fullscreen": false,
+				"height": 600,
+				"resizable": true,
+				"title": "Carlton's Utilities",
+				"width": 800
+			}
+		]
+	}
+}
