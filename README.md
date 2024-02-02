@@ -1,6 +1,6 @@
 # Carlton's Utilities
 
-# Creation History
+## Creation History
 
 This code repo is based of:
 
@@ -13,7 +13,7 @@ The following have been update:
 - mode-watcher for dark/light mode
 - Command Line Options - Testing presently
 
-# Code History
+## Code History
 
 The instructions below are summarized from:
 
