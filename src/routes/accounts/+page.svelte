@@ -11,6 +11,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
 	import { Input } from '$lib/components/ui/input';
+	import * as Select from '$lib/components/ui/select';
 	import * as Table from '$lib/components/ui/table';
 	import { XSquare } from 'lucide-svelte';
 	import type { accountsT, instT } from './accounts';
@@ -38,7 +39,7 @@
 				const text = await readTextFile(fileName, {
 					dir: BaseDirectory.AppConfig
 				});
-				console.log(text);
+				//console.log(text);
 				accounts = JSON.parse(text);
 				sum = sumCalc();
 				loading = false;
@@ -103,6 +104,10 @@
 			console.error({ err });
 		}
 	};
+
+	const items: Select.SelectItem[string] = Object.values(aType);
+	const selectedIndex = 0;
+	let selectedItem = items[selectedIndex];
 </script>
 
 <div class="flex flex-col items-center gap-2">
@@ -176,7 +181,7 @@
 		{#if iAddShow}
 			<Card.Root>
 				<Card.Header>
-					<div class="flex flex-row gap-1 items-center justify-center">
+					<div class="flex flex-row items-center justify-center gap-1">
 						<Button on:click={addI}>Add New Institution</Button>
 						<Button on:click={() => (iAddShow = false)}>Cancel Add</Button>
 					</div>
@@ -196,11 +201,21 @@
 									<Input bind:value={newI.institution} size={15} />
 								</Table.Cell>
 								<Table.Cell class="text-right">
-									<select bind:value={newI.type}>
-										{#each Object.values(aType) as aT}
-											<option value={aT}>{aT}</option>
-										{/each}
-									</select>
+									<Select.Root
+										onSelectedChange={(e) =>
+											(newI.type = e ? e.value : selectedItem)}
+										{items}
+										selected={selectedItem}
+									>
+										<Select.Trigger class="w-[180px]">
+											<Select.Value placeholder={selectedItem} />
+										</Select.Trigger>
+										<Select.Content>
+											{#each items as item}
+												<Select.Item value={item}>{item}</Select.Item>
+											{/each}
+										</Select.Content>
+									</Select.Root>
 								</Table.Cell>
 								<Table.Cell>
 									<Input bind:value={newI.amount} size={10} />

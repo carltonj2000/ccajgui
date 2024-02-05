@@ -24,6 +24,7 @@ The instructions below are summarized from:
 npm create svelte@latest ccajgui
 cd ccajgui/
 npm install lucide-svelte
+npm install -D prettier prettier-plugin-tailwindcss
 npm install --save-dev @sveltejs/adapter-static
 npm install --save-dev @tauri-apps/cli
 npm install @tauri-apps/api
